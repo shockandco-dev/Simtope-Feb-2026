@@ -4,10 +4,6 @@ import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
 import { Button } from './Button';
 
-// Import the logos so Vite processes them correctly for the build
-import logoLight from '../input_file_0.png';
-import logoDark from '../input_file_1.png';
-
 interface HeaderProps {
   theme?: 'dark' | 'light';
 }
@@ -23,7 +19,7 @@ export const Header: React.FC<HeaderProps> = ({ theme = 'dark' }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const logoSrc = theme === 'dark' ? logoDark : logoLight;
+  const logoSrc = theme === 'dark' ? '/input_file_1.png' : '/input_file_0.png';
 
   const getPath = (label: string) => {
     switch (label) {
