@@ -20,6 +20,10 @@ export const NAV_ITEMS: NavItem[] = [
   {
     label: 'Company',
     href: '#contact'
+  },
+  {
+    label: '$0 Data Offer',
+    href: '/zero-data'
   }
 ];
 

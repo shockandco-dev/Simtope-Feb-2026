@@ -9,9 +9,10 @@ import { SimManagementPage } from './components/SimManagementPage';
 import { DeploymentServicesPage } from './components/DeploymentServicesPage';
 import { ContactPage } from './components/ContactPage';
 import { CompanyPage } from './components/CompanyPage';
+import { ZeroDataPage } from './components/ZeroDataPage';
 import { Sun, Moon } from 'lucide-react';
 
-export type PageType = 'home' | 'satellite' | 'iot-sim' | 'lpwa' | 'sim-management' | 'deployment-services' | 'contact' | 'company';
+export type PageType = 'home' | 'satellite' | 'iot-sim' | 'lpwa' | 'sim-management' | 'deployment-services' | 'contact' | 'company' | 'zero-data';
 
 const BASE_PATH = '';
 
@@ -28,7 +29,7 @@ const App: React.FC = () => {
     window.addEventListener('popstate', handlePopState);
     
     const initialPath = window.location.pathname.replace(BASE_PATH, '').replace('/', '') as PageType;
-    if (initialPath && ['satellite', 'iot-sim', 'lpwa', 'sim-management', 'deployment-services', 'contact', 'company'].includes(initialPath)) {
+    if (initialPath && ['satellite', 'iot-sim', 'lpwa', 'sim-management', 'deployment-services', 'contact', 'company', 'zero-data'].includes(initialPath)) {
       setCurrentPage(initialPath);
     }
 
@@ -81,6 +82,7 @@ const App: React.FC = () => {
       case 'deployment-services': return <DeploymentServicesPage />;
       case 'contact': return <ContactPage />;
       case 'company': return <CompanyPage />;
+      case 'zero-data': return <ZeroDataPage onNavigate={navigateTo} />;
       default: return <Home onNavigate={navigateTo} />;
     }
   };
@@ -88,7 +90,13 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-brand-dark text-brand-text-primary transition-colors duration-500 overflow-x-hidden">
       <Header onNavigate={navigateTo} theme={theme} />
-      
+      {currentPage !== 'home' && currentPage !== 'zero-data' && (
+        <div className="relative mt-24">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <img src="assets/zero-dollars-for-6-months-with-Simtope-leaderboard.png" alt="Zero Dollars for 6 months with Simtope" className="w-full" />
+          </div>
+        </div>
+      )}
       <main className="relative">
         {renderPage()}
       </main>
