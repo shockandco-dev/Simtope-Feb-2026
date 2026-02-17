@@ -1,8 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Database, CalendarCheck, Cpu, ChevronRight } from 'lucide-react';
 
-export const ZeroDataPage: React.FC = () => {
+interface ZeroDataPageProps {
+  onNavigate: (page: string) => void;
+}
+
+export const ZeroDataPage: React.FC<ZeroDataPageProps> = ({ onNavigate }) => {
 
   const FeatureCard: React.FC<{ icon: React.ElementType; title: string; body: string }> = ({ icon: Icon, title, body }) => (
     <div className="bg-slate-800 p-6 rounded-lg border border-slate-700 transition-all hover:border-blue-500/50 hover:shadow-lg">
@@ -43,12 +46,12 @@ export const ZeroDataPage: React.FC = () => {
             We are covering the data bill for new customers for their first 6 months. No hidden fees. Just pure connectivity.
           </p>
           <div className="flex justify-center items-center flex-col sm:flex-row gap-4">
-            <Link
-              to="/contact"
+            <button 
+              onClick={() => onNavigate('contact')}
               className="w-full sm:w-auto bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition-all shadow-md hover:shadow-blue-500/20"
             >
               Claim Your 6-Month Credit
-            </Link>
+            </button>
           </div>
           <p className="text-xs text-slate-500 mt-4 max-w-2xl mx-auto">*Offer valid for new customers only. Maximum $5,000 of data per month for 6 months, does not include voice or SMS, on a 12-month contract. Static IP extra.</p>
         </div>
@@ -154,13 +157,13 @@ export const ZeroDataPage: React.FC = () => {
       <section className="py-20 text-center">
         <div className="container mx-auto px-4 max-w-2xl">
           <h2 className="text-3xl font-bold text-white mb-6">Stop overpaying for connectivity you can’t control.</h2>
-          <Link
-            to="/contact"
+          <button 
+            onClick={() => onNavigate('contact')}
             className="w-full sm:w-auto bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-500/30 flex items-center justify-center mx-auto gap-2"
           >
             Get Started with $0 Data
             <ChevronRight className="w-5 h-5" />
-          </Link>
+          </button>
         </div>
       </section>
     </div>

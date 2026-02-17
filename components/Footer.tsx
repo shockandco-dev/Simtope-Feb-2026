@@ -1,21 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { PageType } from '../App';
+
+// Import the logos so Vite processes them correctly for the build
+import logoLight from '../input_file_0.png';
+import logoDark from '../input_file_1.png';
 
 interface FooterProps {
+  onNavigate: (page: PageType, elementId?: string) => void;
   theme?: 'dark' | 'light';
 }
 
-export const Footer: React.FC<FooterProps> = ({ theme = 'dark' }) => {
-  const logoSrc = theme === 'dark' ? '/input_file_1.png' : '/input_file_0.png';
+export const Footer: React.FC<FooterProps> = ({ onNavigate, theme = 'dark' }) => {
+  const logoSrc = theme === 'dark' ? logoDark : logoLight;
 
   return (
     <footer className="bg-brand-dark border-t border-brand-border pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-1">
-            <Link to="/" className="flex items-center mb-4 cursor-pointer group">
+            <div className="flex items-center mb-4 cursor-pointer group" onClick={() => onNavigate('home')}>
               <img key={logoSrc} src={logoSrc} alt="Simtope" className="h-8 w-auto transition-opacity group-hover:opacity-80 object-contain" loading="lazy" />
-            </Link>
+            </div>
             <p className="text-brand-text-secondary text-sm leading-relaxed">
               Global Tier-1 connectivity aggregator for the IoT generation. Enabling devices to talk in 190+ countries.
             </p>
@@ -23,16 +28,16 @@ export const Footer: React.FC<FooterProps> = ({ theme = 'dark' }) => {
           <div>
             <h4 className="text-brand-text-primary font-semibold mb-4">Solutions</h4>
             <ul className="space-y-2 text-sm text-brand-text-secondary">
-              <li><Link to="/iot-sim" className="hover:text-brand-primary transition-colors text-left">eSIM for Enterprise</Link></li>
-              <li><Link to="/iot-sim" className="hover:text-brand-primary transition-colors text-left">Industrial SIMs</Link></li>
-              <li><Link to="/satellite" className="hover:text-brand-primary transition-colors text-left">Satellite IoT</Link></li>
-              <li><Link to="/deployment-services" className="hover:text-brand-primary transition-colors text-left">Private LTE/5G</Link></li>
+              <li><button onClick={() => onNavigate('iot-sim')} className="hover:text-brand-primary transition-colors text-left">eSIM for Enterprise</button></li>
+              <li><button onClick={() => onNavigate('iot-sim', 'form-factors')} className="hover:text-brand-primary transition-colors text-left">Industrial SIMs</button></li>
+              <li><button onClick={() => onNavigate('satellite')} className="hover:text-brand-primary transition-colors text-left">Satellite IoT</button></li>
+              <li><button onClick={() => onNavigate('deployment-services')} className="hover:text-brand-primary transition-colors text-left">Private LTE/5G</button></li>
             </ul>
           </div>
           <div>
             <h4 className="text-brand-text-primary font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-sm text-brand-text-secondary">
-              <li><Link to="/company" className="hover:text-brand-primary transition-colors text-left">About Us</Link></li>
+              <li><button onClick={() => onNavigate('company')} className="hover:text-brand-primary transition-colors text-left">About Us</button></li>
             </ul>
           </div>
           <div>

@@ -5,7 +5,6 @@ export default defineConfig({
   plugins: [react()],
   // Using relative base to ensure asset resolution on all hosting environments
   base: './',
-  publicDir: 'public',
   resolve: {
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
   },
