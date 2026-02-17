@@ -93,7 +93,7 @@ const App: React.FC = () => {
       {currentPage !== 'home' && currentPage !== 'zero-data' && (
         <div className="relative mt-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <img src="assets/zero-dollars-for-6-months-with-Simtope-leaderboard.png" alt="Zero Dollars for 6 months with Simtope" className="w-full" />
+            <img src="https://raw.githubusercontent.com/shockandco-dev/Simtope-Jan-15/main/assets/zero-dollars-for-6-months-with-Simtope-leaderboard.png" alt="Zero Dollars for 6 months with Simtope" className="w-full" />
           </div>
         </div>
       )}

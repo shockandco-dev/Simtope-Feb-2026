@@ -56,7 +56,7 @@ export const Hero: React.FC<HeroProps> = ({ onConnect }) => {
 
           <div className="relative group">
              <img 
-               src="assets/zero-data-offer.png"
+               src="https://raw.githubusercontent.com/shockandco-dev/Simtope-Jan-15/main/assets/zero-data-offer.png"
                alt="Simtope Connectivity Stack"
                className="relative z-10 w-full max-w-xl mx-auto"
              />
