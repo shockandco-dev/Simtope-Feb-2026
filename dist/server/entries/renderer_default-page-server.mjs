@@ -11,9 +11,6 @@ function PageContextProvider({ pageContext, children }) {
 function PageShell({ children, pageContext }) {
   return /* @__PURE__ */ jsx(React.StrictMode, { children: /* @__PURE__ */ jsx(PageContextProvider, { pageContext, children }) });
 }
-/*! index.css?transform-only [vike:pluginModuleBanner] */
-/*! index.css?url [vike:pluginModuleBanner] */
-const stylesheet = "/Simtope-Feb-2026/assets/static/index.ueWNJZ-a.css";
 /*! renderer/_default.page.server.tsx [vike:pluginModuleBanner] */
 var __freeze = Object.freeze;
 var __defProp = Object.defineProperty;
@@ -42,7 +39,9 @@ async function render(pageContext) {
 
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="`, '" />\n        <title>', '</title>\n        <link rel="canonical" href="https://simtope.com" />\n        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>S</text></svg>">\n        <link rel="stylesheet" href="', `">
+        <meta name="description" content="`, '" />\n        <title>', `</title>
+        <link rel="canonical" href="https://simtope.com" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>S</text></svg>">
         
         <!-- Simtope Identification: v1.2.6-Final-Stable-Deploy -->
         <meta name="simtope-build-id" content="v1.2.6-Final-Stable-Deploy" />
@@ -88,7 +87,7 @@ async function render(pageContext) {
         </style>
       </head>
       <body>
-        <div id="page-view">`, "</div>\n      </body>\n    </html>"])), desc, title, stylesheet, dangerouslySkipEscape(pageHtml));
+        <div id="page-view">`, "</div>\n      </body>\n    </html>"])), desc, title, dangerouslySkipEscape(pageHtml));
   return {
     documentHtml,
     pageContext: {}
