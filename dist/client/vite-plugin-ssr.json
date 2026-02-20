@@ -1,0 +1,11 @@
+{
+  "version": "0.4.142",
+  "usesClientRouter": false,
+  "manifestKeyMap": {},
+  "baseServer": "/Simtope-Feb-2026/",
+  "baseAssets": "/Simtope-Feb-2026/",
+  "includeAssetsImportedByServer": true,
+  "redirects": {},
+  "trailingSlash": false,
+  "disableUrlNormalization": false
+}
