@@ -161,8 +161,12 @@
       "_chunk-CDwyA7EU.js"
     ]
   },
+  "_index-bca1542f.ueWNJZ-a.css": {
+    "file": "assets/static/index-bca1542f.ueWNJZ-a.css",
+    "src": "_index-bca1542f.ueWNJZ-a.css"
+  },
   "node_modules/vike/dist/esm/client/runtime-client-routing/entry.js": {
-    "file": "assets/entries/entry-client-routing.Cm4qqU1z.js",
+    "file": "assets/entries/entry-client-routing.BZbWhs3r.js",
     "name": "entries/entry-client-routing",
     "src": "node_modules/vike/dist/esm/client/runtime-client-routing/entry.js",
     "isEntry": true,
@@ -184,7 +188,7 @@
     ]
   },
   "node_modules/vike/dist/esm/client/runtime-server-routing/entry.js": {
-    "file": "assets/entries/entry-server-routing.JD7T02YZ.js",
+    "file": "assets/entries/entry-server-routing.tUoeN_4w.js",
     "name": "entries/entry-server-routing",
     "src": "node_modules/vike/dist/esm/client/runtime-server-routing/entry.js",
     "isEntry": true,
@@ -377,10 +381,13 @@
     ]
   },
   "renderer/_default.page.server.tsx?extractAssets&lang.tsx": {
-    "file": "assets/entries/renderer_default.page.server.extractAssets.l0sNRNKZ.js",
+    "file": "assets/entries/renderer_default.page.server.extractAssets.BaqyN-Vw.js",
     "name": "entries/renderer/_default.page.server.tsx_extractAssets_lang",
     "src": "renderer/_default.page.server.tsx?extractAssets&lang.tsx",
     "isEntry": true,
-    "isDynamicEntry": true
+    "isDynamicEntry": true,
+    "css": [
+      "assets/static/index-bca1542f.ueWNJZ-a.css"
+    ]
   }
 }

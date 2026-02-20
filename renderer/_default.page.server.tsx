@@ -3,6 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import { PageShell } from './PageShell';
 import { dangerouslySkipEscape, escapeInject } from 'vike/server';
 import type { PageContextServer } from './types';
+import '../index.css';
 
 async function render(pageContext: PageContextServer) {
   const { Page, pageProps } = pageContext;

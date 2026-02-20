@@ -2,6 +2,7 @@ import { jsx } from "react/jsx-runtime";
 import ReactDOMServer from "react-dom/server";
 import React from "react";
 import { escapeInject, dangerouslySkipEscape } from "vike/server";
+/* empty css                       */
 /*! renderer/usePageContext.tsx [vike:pluginModuleBanner] */
 const Context = React.createContext(null);
 function PageContextProvider({ pageContext, children }) {
