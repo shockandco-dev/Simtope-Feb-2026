@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { Button } from './Button';
 import { 
   Globe2, Zap, ShieldCheck, Cpu, 
@@ -7,12 +8,15 @@ import {
   Car, Gauge, BatteryCharging, Truck, Container,
   ChevronDown, ChevronUp, LayoutDashboard
 } from 'lucide-react';
+import { PageType } from '../App';
 
-interface SimManagementPageProps {
-  onConnect?: () => void;
-}
+type OutletContextType = {
+  onNavigate: (page: PageType, elementId?: string) => void;
+};
 
-export const SimManagementPage: React.FC<SimManagementPageProps> = ({ onConnect }) => {
+export const SimManagementPage: React.FC = () => {
+  const { onNavigate } = useOutletContext<OutletContextType>();
+
   return (
     <div className="pt-20 bg-brand-dark min-h-screen animate-fade-in text-brand-text-primary">
       
@@ -41,7 +45,7 @@ export const SimManagementPage: React.FC<SimManagementPageProps> = ({ onConnect 
               Manage your connectivity and the entire lifecycle of your IoT devices from one connectivity management platform. Scale faster with automated provisioning and real-time diagnostics.
             </p>
             <div className="flex flex-wrap gap-4">
-               <Button size="lg" onClick={onConnect}>Request Platform Demo</Button>
+               <Button size="lg" onClick={() => onNavigate('contact', 'contact-form')}>Request Platform Demo</Button>
             </div>
           </div>
         </div>
@@ -247,7 +251,7 @@ export const SimManagementPage: React.FC<SimManagementPageProps> = ({ onConnect 
                 IoT should add efficiency, not complexity. But connecting cellular devices can be a manual, costly, reactive chore. 
                 The Simtope IoT Control Center manages the connectivity of all your IoT devices through one global SaaS solution.
             </p>
-            <Button size="lg" className="shadow-xl shadow-brand-primary/20" onClick={onConnect}>
+            <Button size="lg" className="shadow-xl shadow-brand-primary/20" onClick={() => onNavigate('contact', 'contact-form')}>
                 Order a Starter Kit
             </Button>
          </div>

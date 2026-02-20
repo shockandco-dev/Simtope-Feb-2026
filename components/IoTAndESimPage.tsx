@@ -1,17 +1,21 @@
 
 import React from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { Button } from './Button';
 import { 
   Smartphone, Cpu, Globe, 
   BarChart3, Wifi, Layers, Zap,
   Server, Lock
 } from 'lucide-react';
+import { PageType } from '../App';
 
-interface IoTAndESimPageProps {
-  onConnect?: () => void;
-}
+type OutletContextType = {
+  onNavigate: (page: PageType, elementId?: string) => void;
+};
 
-export const IoTAndESimPage: React.FC<IoTAndESimPageProps> = ({ onConnect }) => {
+export const IoTAndESimPage: React.FC = () => {
+  const { onNavigate } = useOutletContext<OutletContextType>();
+
   return (
     <div className="pt-20 bg-brand-dark min-h-screen animate-fade-in text-brand-text-primary">
       
@@ -31,7 +35,7 @@ export const IoTAndESimPage: React.FC<IoTAndESimPageProps> = ({ onConnect }) => 
               Deploy, manage, and scale your connected devices globally with our flexible SIM and eSIM solutions, backed by tier-one carriers across North America and beyond. Get started today with the adaptable <strong>Simp Tri-SIM</strong>.
             </p>
             <div className="flex flex-wrap gap-4">
-               <Button variant="primary" size="lg" onClick={onConnect}>Contact Sales</Button>
+               <Button variant="primary" size="lg" onClick={() => onNavigate('contact', 'contact-form')}>Contact Sales</Button>
             </div>
           </div>
           
@@ -375,7 +379,7 @@ export const IoTAndESimPage: React.FC<IoTAndESimPageProps> = ({ onConnect }) => 
                   Start building with the Simp Tri-SIM and our powerful platform today. Get the reliable, scalable connectivity your project demands.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                  <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full sm:w-auto" onClick={onConnect}>
+                  <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full sm:w-auto" onClick={() => onNavigate('contact', 'contact-form')}>
                       Contact Sales
                   </Button>
               </div>

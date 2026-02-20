@@ -1,17 +1,21 @@
 
 import React, { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { Button } from './Button';
 import { 
   Signal, BatteryCharging, Wifi, Box, Tractor, 
   Zap, Globe, Layers, LayoutDashboard, ChevronDown, ChevronUp,
   Cpu, Activity, CheckCircle2
 } from 'lucide-react';
+import { PageType } from '../App';
 
-interface LPWAPageProps {
-  onConnect?: () => void;
-}
+type OutletContextType = {
+  onNavigate: (page: PageType, elementId?: string) => void;
+};
 
-export const LPWAPage: React.FC<LPWAPageProps> = ({ onConnect }) => {
+export const LPWAPage: React.FC = () => {
+  const { onNavigate } = useOutletContext<OutletContextType>();
+
   return (
     <div className="pt-20 bg-brand-dark min-h-screen animate-fade-in text-brand-text-primary">
       
@@ -31,7 +35,7 @@ export const LPWAPage: React.FC<LPWAPageProps> = ({ onConnect }) => {
               Ultra-efficient, low-power solutions designed for massive scale and optimal battery life. Deploy your devices with seamless, multi-carrier coverage.
             </p>
             <div className="flex flex-wrap gap-4">
-               <Button variant="outline" size="lg" onClick={onConnect}>Talk to an LPWAN Expert</Button>
+               <Button variant="outline" size="lg" onClick={() => onNavigate('contact', 'contact-form')}>Talk to an LPWAN Expert</Button>
             </div>
           </div>
           
@@ -337,7 +341,7 @@ export const LPWAPage: React.FC<LPWAPageProps> = ({ onConnect }) => {
                   Get ultra-efficient connectivity designed for scale, durability, and battery life.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                  <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full sm:w-auto" onClick={onConnect}>
+                  <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 w-full sm:w-auto" onClick={() => onNavigate('contact', 'contact-form')}>
                       Talk to an LPWAN Expert
                   </Button>
               </div>

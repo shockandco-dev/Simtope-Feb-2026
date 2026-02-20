@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { Hero } from './Hero';
 import { Services } from './Services';
 import { Features } from './Features';
@@ -7,11 +8,13 @@ import { Process } from './Process';
 import { Contact } from './Contact';
 import { PageType } from '../App';
 
-interface HomeProps {
+type OutletContextType = {
   onNavigate: (page: PageType, elementId?: string) => void;
-}
+};
 
-export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
+export const Home: React.FC = () => {
+  const { onNavigate } = useOutletContext<OutletContextType>();
+
   return (
     <div className="animate-fade-in space-y-0">
       <Hero onConnect={() => onNavigate('contact', 'contact-form')} />
