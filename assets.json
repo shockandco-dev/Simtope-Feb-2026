@@ -27,9 +27,12 @@
       "_chunk-CB-DXJc_.js"
     ]
   },
-  "_chunk-BLtvH9ap.js": {
-    "file": "assets/chunks/chunk-BLtvH9ap.js",
-    "name": "executeOnRenderClientHook"
+  "_chunk-BFGPeH7f.js": {
+    "file": "assets/chunks/chunk-BFGPeH7f.js",
+    "name": "prefetch",
+    "imports": [
+      "_chunk-DzWAiX66.js"
+    ]
   },
   "_chunk-BOh2rldx.js": {
     "file": "assets/chunks/chunk-BOh2rldx.js",
@@ -140,6 +143,10 @@
       "_chunk--1GISAhY.js"
     ]
   },
+  "_chunk-DUxFCQZ3.js": {
+    "file": "assets/chunks/chunk-DUxFCQZ3.js",
+    "name": "preload-helper"
+  },
   "_chunk-DYCy1YSS.js": {
     "file": "assets/chunks/chunk-DYCy1YSS.js",
     "name": "cpu",
@@ -161,13 +168,19 @@
       "_chunk--1GISAhY.js"
     ]
   },
+  "_chunk-DzWAiX66.js": {
+    "file": "assets/chunks/chunk-DzWAiX66.js",
+    "name": "executeOnRenderClientHook"
+  },
   "node_modules/vite-plugin-ssr/dist/esm/client/client-routing-runtime/entry.js": {
-    "file": "assets/entries/entry-client-routing.Tq5SIgns.js",
+    "file": "assets/entries/entry-client-routing.Bs0yw4-2.js",
     "name": "entries/entry-client-routing",
     "src": "node_modules/vite-plugin-ssr/dist/esm/client/client-routing-runtime/entry.js",
     "isEntry": true,
     "imports": [
-      "_chunk-BLtvH9ap.js"
+      "_chunk-DzWAiX66.js",
+      "_chunk-DUxFCQZ3.js",
+      "_chunk-BFGPeH7f.js"
     ],
     "dynamicImports": [
       "pages/company/index.page.tsx",
@@ -184,12 +197,13 @@
     ]
   },
   "node_modules/vite-plugin-ssr/dist/esm/client/server-routing-runtime/entry.js": {
-    "file": "assets/entries/entry-server-routing.l7hxA5N9.js",
+    "file": "assets/entries/entry-server-routing.DIxCITKX.js",
     "name": "entries/entry-server-routing",
     "src": "node_modules/vite-plugin-ssr/dist/esm/client/server-routing-runtime/entry.js",
     "isEntry": true,
     "imports": [
-      "_chunk-BLtvH9ap.js"
+      "_chunk-DzWAiX66.js",
+      "_chunk-DUxFCQZ3.js"
     ],
     "dynamicImports": [
       "pages/company/index.page.tsx",
@@ -354,7 +368,7 @@
     ]
   },
   "pages/zero-data/index.page.tsx": {
-    "file": "assets/entries/pages_zero-data_index.page.tzVSoEbL.js",
+    "file": "assets/entries/pages_zero-data_index.page.SyI1hUFT.js",
     "name": "entries/pages/zero-data/index.page",
     "src": "pages/zero-data/index.page.tsx",
     "isEntry": true,
@@ -363,11 +377,13 @@
       "_chunk-CB-DXJc_.js",
       "_chunk--1GISAhY.js",
       "_chunk-DYCy1YSS.js",
-      "_chunk-CIHzMuBu.js"
+      "_chunk-CIHzMuBu.js",
+      "_chunk-BFGPeH7f.js",
+      "_chunk-DzWAiX66.js"
     ]
   },
   "renderer/_default.page.client.tsx": {
-    "file": "assets/entries/renderer_default.page.client.C9PYkTVF.js",
+    "file": "assets/entries/renderer_default.page.client.C00ITGyh.js",
     "name": "entries/renderer/_default.page.client",
     "src": "renderer/_default.page.client.tsx",
     "isEntry": true,
