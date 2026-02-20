@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import { PageShell } from './PageShell';
 import { dangerouslySkipEscape, escapeInject } from 'vike/server';
 import type { PageContextServer } from './types';
-import '../index.css';
+import stylesheet from '../index.css?url';
 
 async function render(pageContext: PageContextServer) {
   const { Page, pageProps } = pageContext;
@@ -36,6 +36,7 @@ async function render(pageContext: PageContextServer) {
         <title>${title}</title>
         <link rel="canonical" href="https://simtope.com" />
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>S</text></svg>">
+        <link rel="stylesheet" href="${stylesheet}">
         
         <!-- Simtope Identification: v1.2.6-Final-Stable-Deploy -->
         <meta name="simtope-build-id" content="v1.2.6-Final-Stable-Deploy" />
