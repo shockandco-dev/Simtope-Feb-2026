@@ -1,8 +1,9 @@
 import { jsxs, jsx, Fragment } from "react/jsx-runtime";
 import { useState } from "react";
-import { B as Button } from "../chunks/chunk-BpY4DcCL.js";
+import { B as Button } from "../chunks/chunk-DKa2_NxN.js";
 import { MapPin, Phone, Loader2 } from "lucide-react";
-import { s as submitToSpreadsheet } from "../chunks/chunk-BsyCvPk0.js";
+import { s as submitToSpreadsheet } from "../chunks/chunk-BFAlPhCH.js";
+/*! components/ContactPage.tsx [vike:pluginModuleBanner] */
 const ContactPage = () => {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -113,6 +114,7 @@ const ContactPage = () => {
     ] }) }) })
   ] });
 };
+/*! pages/contact/index.page.tsx [vike:pluginModuleBanner] */
 function Page() {
   return /* @__PURE__ */ jsx(ContactPage, {});
 }

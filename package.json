@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vike build",
+    "prerender": "vike prerender",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "predeploy": "npm run build && npm run prerender",
+    "deploy": "gh-pages -d dist/client"
   },
   "dependencies": {
     "@google/genai": "latest",
@@ -16,7 +17,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.13.0",
-    "vite-plugin-ssr": "^0.4.142"
+    "vike": "^0.4.143"
   },
   "devDependencies": {
     "@types/node": "^20.12.7",

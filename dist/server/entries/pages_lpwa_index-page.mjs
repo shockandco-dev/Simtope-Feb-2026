@@ -1,8 +1,9 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
-import { B as Button } from "../chunks/chunk-BpY4DcCL.js";
+import { B as Button } from "../chunks/chunk-DKa2_NxN.js";
 import { Signal, BatteryCharging, CheckCircle2, Activity, Globe, Layers, LayoutDashboard, Wifi, Cpu, Box, Tractor, Zap, ChevronUp, ChevronDown } from "lucide-react";
+/*! components/LPWAPage.tsx [vike:pluginModuleBanner] */
 const LPWAPage = () => {
   const { onNavigate } = useOutletContext();
   return /* @__PURE__ */ jsxs("div", { className: "pt-20 bg-brand-dark min-h-screen animate-fade-in text-brand-text-primary", children: [
@@ -260,6 +261,7 @@ const FAQItem = ({ question, answer }) => {
     )
   ] });
 };
+/*! pages/lpwa/index.page.tsx [vike:pluginModuleBanner] */
 function Page() {
   return /* @__PURE__ */ jsx(LPWAPage, {});
 }

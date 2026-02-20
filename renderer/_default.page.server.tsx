@@ -1,7 +1,7 @@
 
 import ReactDOMServer from 'react-dom/server';
 import { PageShell } from './PageShell';
-import { dangerouslySkipEscape, escapeInject } from 'vite-plugin-ssr/server';
+import { dangerouslySkipEscape, escapeInject } from 'vike/server';
 import type { PageContextServer } from './types';
 
 async function render(pageContext: PageContextServer) {
@@ -14,7 +14,7 @@ async function render(pageContext: PageContextServer) {
 
   const { documentProps } = pageContext.exports;
   const title = (documentProps && documentProps.title) || 'Vite SSR app';
-  const desc = (documentProps && documentProps.description) || 'App using Vite + vite-plugin-ssr';
+  const desc = (documentProps && documentProps.description) || 'App using Vite + vike';
 
   const documentHtml = escapeInject`<!DOCTYPE html>
     <html lang="en">

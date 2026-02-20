@@ -1,6 +1,7 @@
 import { jsxs, jsx } from "react/jsx-runtime";
-import { B as Button } from "../chunks/chunk-BpY4DcCL.js";
+import { B as Button } from "../chunks/chunk-DKa2_NxN.js";
 import { Satellite, Smartphone, Signal, Zap, Cpu, Truck, Mountain, Tractor } from "lucide-react";
+/*! components/SatellitePage.tsx [vike:pluginModuleBanner] */
 const SatellitePage = () => {
   return /* @__PURE__ */ jsxs("div", { className: "pt-20 bg-brand-dark min-h-screen animate-fade-in text-brand-text-primary", children: [
     /* @__PURE__ */ jsxs("section", { className: "relative py-20 lg:py-32 overflow-hidden", children: [
@@ -109,6 +110,7 @@ const UseCaseItem = ({ icon: Icon, title, desc }) => /* @__PURE__ */ jsxs("div",
   /* @__PURE__ */ jsx("h3", { className: "text-xl font-bold mb-3", children: title }),
   /* @__PURE__ */ jsx("p", { className: "text-sm text-brand-text-secondary leading-relaxed", children: desc })
 ] });
+/*! pages/satellite/index.page.tsx [vike:pluginModuleBanner] */
 function Page() {
   return /* @__PURE__ */ jsx(SatellitePage, {});
 }

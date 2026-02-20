@@ -1,5 +1,6 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { MapPin, Users, Globe, Cpu, ShieldCheck, Rocket, Target, Briefcase } from "lucide-react";
+/*! components/CompanyPage.tsx [vike:pluginModuleBanner] */
 const CompanyPage = () => {
   return /* @__PURE__ */ jsxs("div", { className: "pt-20 bg-brand-dark min-h-screen animate-fade-in text-brand-text-primary", children: [
     /* @__PURE__ */ jsxs("section", { className: "relative py-24 overflow-hidden", children: [
@@ -97,6 +98,7 @@ const CompanyPage = () => {
     ] }) })
   ] });
 };
+/*! pages/company/index.page.tsx [vike:pluginModuleBanner] */
 function Page() {
   return /* @__PURE__ */ jsx(CompanyPage, {});
 }

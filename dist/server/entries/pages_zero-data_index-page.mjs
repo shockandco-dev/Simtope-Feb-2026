@@ -1,5 +1,6 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { Database, CalendarCheck, Cpu, ChevronRight } from "lucide-react";
+/*! components/ZeroDataPage.tsx [vike:pluginModuleBanner] */
 const ZeroDataPage = ({ onNavigate }) => {
   const FeatureCard = ({ icon: Icon, title, body }) => /* @__PURE__ */ jsx("div", { className: "bg-slate-800 p-6 rounded-lg border border-slate-700 transition-all hover:border-blue-500/50 hover:shadow-lg", children: /* @__PURE__ */ jsxs("div", { className: "flex items-start", children: [
     /* @__PURE__ */ jsx("div", { className: "bg-slate-700 p-3 rounded-full mr-4", children: /* @__PURE__ */ jsx(Icon, { className: "w-5 h-5 text-blue-400" }) }),
@@ -140,6 +141,7 @@ const ZeroDataPage = ({ onNavigate }) => {
     ] }) })
   ] });
 };
+/*! pages/zero-data/index.page.tsx [vike:pluginModuleBanner] */
 function Page() {
   return /* @__PURE__ */ jsx(ZeroDataPage, {});
 }

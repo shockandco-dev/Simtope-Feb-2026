@@ -1,7 +1,8 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { useOutletContext } from "react-router-dom";
-import { B as Button } from "../chunks/chunk-BpY4DcCL.js";
+import { B as Button } from "../chunks/chunk-DKa2_NxN.js";
 import { Cpu, Layers, Zap, Globe, Smartphone, Wifi, BarChart3, Lock, Server } from "lucide-react";
+/*! components/IoTAndESimPage.tsx [vike:pluginModuleBanner] */
 const IoTAndESimPage = () => {
   const { onNavigate } = useOutletContext();
   return /* @__PURE__ */ jsxs("div", { className: "pt-20 bg-brand-dark min-h-screen animate-fade-in text-brand-text-primary", children: [
@@ -256,6 +257,7 @@ const IoTAndESimPage = () => {
     ] }) })
   ] });
 };
+/*! pages/iot-esim/index.page.tsx [vike:pluginModuleBanner] */
 function Page() {
   return /* @__PURE__ */ jsx(IoTAndESimPage, {});
 }

@@ -1,9 +1,10 @@
 import { jsxs, jsx, Fragment } from "react/jsx-runtime";
 import { useOutletContext } from "react-router-dom";
-import { B as Button } from "../chunks/chunk-BpY4DcCL.js";
+import { B as Button } from "../chunks/chunk-DKa2_NxN.js";
 import { ChevronRight, Smartphone, Cpu, Satellite, Radio, CheckCircle2, ShieldCheck, Zap, Globe2, Hammer, Rocket, Settings, TrendingUp, CheckCircle, Loader2 } from "lucide-react";
 import { useState } from "react";
-import { s as submitToSpreadsheet } from "../chunks/chunk-BsyCvPk0.js";
+import { s as submitToSpreadsheet } from "../chunks/chunk-BFAlPhCH.js";
+/*! components/Hero.tsx [vike:pluginModuleBanner] */
 const Hero = ({ onConnect }) => {
   return /* @__PURE__ */ jsxs("section", { className: "relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-screen flex items-center bg-brand-dark", children: [
     /* @__PURE__ */ jsx("div", { className: "absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,_rgba(59,130,246,0.15),transparent_60%)]" }),
@@ -50,6 +51,7 @@ const Hero = ({ onConnect }) => {
     ] }) })
   ] });
 };
+/*! constants.ts [vike:pluginModuleBanner] */
 const SERVICES = [
   {
     id: "esim",
@@ -86,6 +88,7 @@ const STATS = [
   { label: "Countries Covered", value: "190", suffix: "+" },
   { label: "Uptime SLA", value: "99.99", suffix: "%" }
 ];
+/*! components/Services.tsx [vike:pluginModuleBanner] */
 const Services = () => {
   return /* @__PURE__ */ jsx("section", { id: "solutions", className: "py-24 bg-brand-dark relative", children: /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
     /* @__PURE__ */ jsxs("div", { className: "text-center mb-16", children: [
@@ -110,6 +113,7 @@ const Services = () => {
     )) })
   ] }) });
 };
+/*! components/Features.tsx [vike:pluginModuleBanner] */
 const Features = () => {
   return /* @__PURE__ */ jsxs("section", { id: "platform", className: "py-24 relative overflow-hidden bg-brand-surface border-y border-brand-border", children: [
     /* @__PURE__ */ jsx("div", { className: "absolute inset-0 bg-brand-dark/5" }),
@@ -155,6 +159,7 @@ const Features = () => {
     ] }) })
   ] });
 };
+/*! components/Process.tsx [vike:pluginModuleBanner] */
 const Process = () => {
   const steps = [
     {
@@ -208,6 +213,7 @@ const Process = () => {
     ] })
   ] });
 };
+/*! components/Contact.tsx [vike:pluginModuleBanner] */
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -280,6 +286,7 @@ const Contact = () => {
     ] })
   ] }) }) });
 };
+/*! components/Home.tsx [vike:pluginModuleBanner] */
 const Home = () => {
   const { onNavigate } = useOutletContext();
   return /* @__PURE__ */ jsxs("div", { className: "animate-fade-in space-y-0", children: [
@@ -293,6 +300,7 @@ const Home = () => {
     /* @__PURE__ */ jsx(Contact, {})
   ] });
 };
+/*! pages/index.page.tsx [vike:pluginModuleBanner] */
 function Page() {
   return /* @__PURE__ */ jsx(Home, {});
 }

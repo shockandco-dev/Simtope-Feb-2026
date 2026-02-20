@@ -1,8 +1,9 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
-import { B as Button } from "../chunks/chunk-BpY4DcCL.js";
+import { B as Button } from "../chunks/chunk-DKa2_NxN.js";
 import { Globe2, Zap, Settings, ShieldCheck, CreditCard, Activity, Lock, Smartphone, Car, Gauge, BatteryCharging, Truck, Container, ChevronUp, ChevronDown } from "lucide-react";
+/*! components/SimManagementPage.tsx [vike:pluginModuleBanner] */
 const SimManagementPage = () => {
   const { onNavigate } = useOutletContext();
   return /* @__PURE__ */ jsxs("div", { className: "pt-20 bg-brand-dark min-h-screen animate-fade-in text-brand-text-primary", children: [
@@ -248,6 +249,7 @@ const UseCaseCard = ({ title, description, image, icon: Icon }) => {
     ] })
   ] });
 };
+/*! pages/sim-management/index.page.tsx [vike:pluginModuleBanner] */
 function Page() {
   return /* @__PURE__ */ jsx(SimManagementPage, {});
 }
