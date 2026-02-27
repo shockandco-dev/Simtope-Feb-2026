@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navMenu.style.cssText = `
           display: flex !important;
           flex-direction: column !important;
-          position: absolute !important;
+          position: fixed !important;
           top: 96px !important; /* Exact height of the h-24 header */
           left: 0 !important;
           width: 100% !important;
@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
           padding: 1.5rem !important;
           gap: 1.5rem !important;
           box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5) !important;
+          max-height: calc(100vh - 96px) !important;
+          overflow-y: auto !important;
+          z-index: 40 !important;
         `;
         
         // Wipe the horizontal desktop spacing
@@ -54,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 3. SMART SCROLLING HEADER (Bulletproof Inline Styles) ---
+  // --- 3. SMART SCROLLING HEADER ---
   const header = document.querySelector('header');
   let lastScrollY = window.scrollY;
 
@@ -89,4 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       lastScrollY = currentScrollY;
-    },
+    }, { passive: true });
+  }
+});
