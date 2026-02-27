@@ -12,60 +12,81 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 2. MOBILE MENU TOGGLE (Fixed Positioning) ---
+  // --- 2. MOBILE MENU TOGGLE (Bulletproof Inline Styles) ---
   const mobileBtn = document.querySelector('header button.lg\\:hidden');
   const navMenu = document.querySelector('header nav');
 
   if (mobileBtn && navMenu) {
     mobileBtn.addEventListener('click', () => {
-      navMenu.classList.toggle('hidden');
-      navMenu.classList.toggle('fixed'); // Locks it to the viewport
-      navMenu.classList.toggle('top-24'); // Snaps it right below the h-24 header
-      navMenu.classList.toggle('left-0');
-      navMenu.classList.toggle('w-full');
-      navMenu.classList.toggle('bg-brand-dark');
-      navMenu.classList.toggle('flex-col');
-      navMenu.classList.toggle('items-start'); // Aligns links to the left
-      navMenu.classList.toggle('p-6');
-      navMenu.classList.toggle('border-b');
-      navMenu.classList.toggle('border-brand-border');
-      navMenu.classList.toggle('max-h-[calc(100vh-6rem)]'); // Prevents long menus from breaking the screen
-      navMenu.classList.toggle('overflow-y-auto');
+      const isHidden = navMenu.classList.contains('hidden');
+      
+      if (isHidden) {
+        // Open Menu
+        navMenu.classList.remove('hidden');
+        
+        // Bypass Tailwind completely for guaranteed positioning
+        navMenu.style.cssText = `
+          display: flex !important;
+          flex-direction: column !important;
+          position: absolute !important;
+          top: 96px !important; /* Exact height of the h-24 header */
+          left: 0 !important;
+          width: 100% !important;
+          background-color: rgb(15, 23, 42) !important; /* Dark slate background */
+          padding: 1.5rem !important;
+          gap: 1.5rem !important;
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5) !important;
+        `;
+        
+        // Wipe the horizontal desktop spacing
+        Array.from(navMenu.children).forEach(child => {
+          child.style.margin = '0 !important';
+        });
+        
+      } else {
+        // Close Menu
+        navMenu.classList.add('hidden');
+        navMenu.style.cssText = ''; // Wipes inline styles
+        Array.from(navMenu.children).forEach(child => {
+          child.style.margin = '';
+        });
+      }
     });
   }
 
-  // --- 3. SMART SCROLLING HEADERss ---
+  // --- 3. SMART SCROLLING HEADER (Bulletproof Inline Styles) ---
   const header = document.querySelector('header');
   let lastScrollY = window.scrollY;
 
   if (header) {
+    // Ensure smooth sliding animation
+    header.style.transition = 'transform 0.4s ease-in-out, background-color 0.4s ease-in-out';
+    
     window.addEventListener('scroll', () => {
       const currentScrollY = window.scrollY;
 
-      // Add a solid background to the header when you start scrolling
+      // Solid background when scrolled down
       if (currentScrollY > 20) {
-        header.classList.replace('bg-transparent', 'bg-brand-dark');
-        header.classList.add('border-b', 'border-brand-border', 'shadow-lg');
+        header.style.backgroundColor = 'rgb(15, 23, 42)';
+        header.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
       } else {
-        header.classList.replace('bg-brand-dark', 'bg-transparent');
-        header.classList.remove('border-b', 'border-brand-border', 'shadow-lg');
+        header.style.backgroundColor = 'transparent';
+        header.style.borderBottom = 'none';
       }
 
       // Hide on scroll down, show on scroll up
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down -> pull header out of view
-        header.classList.add('-translate-y-full');
+        // Scrolling down -> slide up out of view
+        header.style.transform = 'translateY(-100%)';
         
-        // Auto-close mobile menu if it's open so it doesn't float weirdly
+        // Auto-close menu if open
         if (navMenu && !navMenu.classList.contains('hidden') && window.innerWidth < 1024) {
-          mobileBtn.click(); 
+          mobileBtn.click();
         }
       } else {
-        // Scrolling up -> drop header back into view
-        header.classList.remove('-translate-y-full');
+        // Scrolling up -> slide down into view
+        header.style.transform = 'translateY(0)';
       }
       
       lastScrollY = currentScrollY;
-    }, { passive: true });
-  }
-});
+    },
