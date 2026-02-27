@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 3. SMART SCROLLING HEADER ---
+  // --- 3. SMART SCROLLING HEADERss ---
   const header = document.querySelector('header');
   let lastScrollY = window.scrollY;
 
