@@ -1,8 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. INJECT GLOBAL CSS (The "Nuke" Option)
+  // 1. INJECT GLOBAL CSS (The Master Stylesheet)
   const style = document.createElement('style');
   style.innerHTML = `
-    /* Force the mobile nav to be a solid, high-priority layer */
+    /* --- DESKTOP DROPDOWN FIXES --- */
+    /* 1. Force Dropdowns to the absolute front layer and give them a solid background */
+    header .group > div, 
+    header nav .absolute {
+      z-index: 999999 !important; /* Forces it ON TOP of the primary menu and page */
+      background-color: #0f172a !important; /* Solid Slate 900 */
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.8) !important;
+    }
+    
+    /* 2. Bridge the "Hover Gap" so the menu doesn't disappear when the mouse moves down */
+    header .group {
+      padding-bottom: 24px !important; 
+      margin-bottom: -24px !important;
+    }
+
+    /* --- MOBILE MENU FIXES --- */
     .mobile-menu-active {
       display: flex !important;
       flex-direction: column !important;
@@ -11,18 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
       left: 0 !important;
       width: 100% !important;
       height: 100vh !important;
-      background-color: #0f172a !important; /* Solid Slate 900 */
+      background-color: #0f172a !important;
       z-index: 999999 !important;
       padding: 2rem !important;
       overflow-y: auto !important;
     }
-    /* Stop the background from scrolling when menu is open */
     .no-scroll { overflow: hidden !important; }
-    
-    /* Ensure dropdowns inside the menu don't flicker */
-    header nav div, header nav ul {
-      background-color: #0f172a !important;
-    }
   `;
   document.head.appendChild(style);
 
@@ -44,11 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastScrollY = window.scrollY;
 
   if (header) {
+    // Ensure the header itself has a high layer priority, but lower than the dropdowns
+    header.style.zIndex = '999998'; 
     header.style.transition = 'transform 0.4s ease, background-color 0.4s ease';
+    
     window.addEventListener('scroll', () => {
       const current = window.scrollY;
       
-      // Background logic
+      // Solid background when scrolled down
       if (current > 50) {
         header.style.backgroundColor = '#0f172a';
         header.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
@@ -57,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         header.style.borderBottom = 'none';
       }
 
-      // Hide/Show logic
+      // Hide on scroll down, show on scroll up
       if (current > lastScrollY && current > 150) {
         header.style.transform = 'translateY(-100%)';
       } else {
@@ -66,4 +78,5 @@ document.addEventListener('DOMContentLoaded', () => {
       lastScrollY = current;
     }, { passive: true });
   }
-});
+
+  // 4. THEME
