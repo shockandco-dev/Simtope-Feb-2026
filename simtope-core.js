@@ -20,25 +20,25 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileBtn.addEventListener('click', () => {
       const isHidden = navMenu.classList.contains('hidden');
       
-      if (isHidden) {
+if (isHidden) {
         // Open Menu
         navMenu.classList.remove('hidden');
         
-        // Bypass Tailwind completely for guaranteed positioning
+        // Solid background and high Z-index to prevent "ghosting" and click-throughs
         navMenu.style.cssText = `
           display: flex !important;
           flex-direction: column !important;
           position: fixed !important;
-          top: 96px !important; /* Exact height of the h-24 header */
+          top: 96px !important; 
           left: 0 !important;
           width: 100% !important;
-          background-color: rgb(15, 23, 42) !important; /* Dark slate background */
-          padding: 1.5rem !important;
-          gap: 1.5rem !important;
-          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5) !important;
+          background-color: #0f172a !important; /* Solid Slate 900 */
+          padding: 2rem !important;
+          gap: 2rem !important;
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
           max-height: calc(100vh - 96px) !important;
           overflow-y: auto !important;
-          z-index: 40 !important;
+          z-index: 9999 !important; /* Forces menu to the very front */
         `;
         
         // Wipe the horizontal desktop spacing
