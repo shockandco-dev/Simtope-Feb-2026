@@ -2,14 +2,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. INJECT GLOBAL CSS
   const style = document.createElement('style');
   style.innerHTML = `
+    /* --- TAILWIND JIT RESPONSIVE FIX FOR IMAGES --- */
+    @media (min-width: 768px) {
+      .md\\:hidden { display: none !important; }
+      .md\\:block { display: block !important; }
+    }
+
     /* --- DESKTOP DROPDOWN FIXES --- */
     @media (min-width: 1024px) {
-      /* Bridge the hover gap securely */
       header .group {
         padding-bottom: 12px !important; 
         margin-bottom: -12px !important;
       }
-      /* Solid background for desktop dropdowns */
       header nav .group .absolute > div {
         z-index: 999999 !important;
         background-color: #0f172a !important;
@@ -32,19 +36,31 @@ document.addEventListener('DOMContentLoaded', () => {
       overflow-y: auto !important;
     }
     
-    /* Make mobile dropdowns push content down instead of floating over it */
-    .mobile-menu-active .group .absolute {
-      position: relative !important;
-      top: 0 !important;
-      padding-top: 0.5rem !important;
-    }
-    
-    /* Remove the box styling so it blends into the mobile menu naturally */
-    .mobile-menu-active .group .absolute > div {
-      background-color: transparent !important;
-      box-shadow: none !important;
-      border: none !important;
-      padding: 0 0 0 1rem !important;
+    /* The "Invisible Box" Fix for Mobile Accordions */
+    @media (max-width: 1023px) {
+      /* Crush the gap completely by default */
+      .mobile-menu-active .group .absolute {
+        display: none !important; 
+        position: relative !important;
+        top: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        padding-top: 0.5rem !important;
+      }
+      
+      /* Open the accordion when JS adds this class */
+      .mobile-menu-active .group.mobile-open .absolute {
+        display: block !important;
+      }
+      
+      /* Blend the open links naturally into the slate background */
+      .mobile-menu-active .group .absolute > div {
+        background-color: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 0 0 1rem !important;
+      }
     }
 
     .no-scroll { overflow: hidden !important; }
@@ -63,6 +79,17 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.toggle('no-scroll', isActive);
     });
   }
+
+  // 2.5 MOBILE ACCORDION LOGIC
+  const dropdownParents = document.querySelectorAll('header nav .group');
+  dropdownParents.forEach(parent => {
+    parent.addEventListener('click', (e) => {
+      // Only fire this behavior on mobile/tablet screens
+      if (window.innerWidth < 1024) {
+        parent.classList.toggle('mobile-open');
+      }
+    });
+  });
 
   // 3. SMART SCROLLING HEADER
   const header = document.querySelector('header');
