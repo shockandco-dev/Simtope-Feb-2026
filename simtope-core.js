@@ -20,40 +20,32 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileBtn.addEventListener('click', () => {
       const isHidden = navMenu.classList.contains('hidden');
       
-if (isHidden) {
-        // Open Menu
+  if (isHidden) {
+        // 1. Show the menu
         navMenu.classList.remove('hidden');
         
-        // Solid background and high Z-index to prevent "ghosting" and click-throughs
-        navMenu.style.cssText = `
-          display: flex !important;
-          flex-direction: column !important;
-          position: fixed !important;
-          top: 96px !important; 
-          left: 0 !important;
-          width: 100% !important;
-          background-color: #0f172a !important; /* Solid Slate 900 */
-          padding: 2rem !important;
-          gap: 2rem !important;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
-          max-height: calc(100vh - 96px) !important;
-          overflow-y: auto !important;
-          z-index: 9999 !important; /* Forces menu to the very front */
-        `;
+        // 2. Force the background and layering (The Nuke Option)
+        navMenu.style.setProperty('display', 'flex', 'important');
+        navMenu.style.setProperty('flex-direction', 'column', 'important');
+        navMenu.style.setProperty('position', 'fixed', 'important');
+        navMenu.style.setProperty('top', '96px', 'important');
+        navMenu.style.setProperty('left', '0', 'important');
+        navMenu.style.setProperty('width', '100%', 'important');
+        navMenu.style.setProperty('height', '100vh', 'important'); // Covers the whole screen
+        navMenu.style.setProperty('background-color', '#0f172a', 'important'); // Solid Slate
+        navMenu.style.setProperty('z-index', '999999', 'important'); // Highest possible priority
+        navMenu.style.setProperty('padding', '2rem', 'important');
         
-        // Wipe the horizontal desktop spacing
-        Array.from(navMenu.children).forEach(child => {
-          child.style.margin = '0 !important';
-        });
+        // 3. Prevent clicking through to the page content
+        document.body.style.overflow = 'hidden'; 
         
       } else {
         // Close Menu
         navMenu.classList.add('hidden');
-        navMenu.style.cssText = ''; // Wipes inline styles
-        Array.from(navMenu.children).forEach(child => {
-          child.style.margin = '';
-        });
+        navMenu.style.cssText = ''; 
+        document.body.style.overflow = ''; // Let the user scroll again
       }
+
     });
   }
 
