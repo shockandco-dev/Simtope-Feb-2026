@@ -79,4 +79,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // 4. THEME
+  // 4. THEME TOGGLE
+  const themeBtn = document.querySelector('button[aria-label="Toggle Theme"]');
+  if (themeBtn) {
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('theme-light');
+    }
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('theme-light');
+      const isLight = document.body.classList.contains('theme-light');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+  }
+});
