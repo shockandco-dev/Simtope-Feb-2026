@@ -1,89 +1,69 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // --- 1. THEME TOGGLE ---
-  const themeBtn = document.querySelector('button[aria-label="Toggle Theme"]');
-  if (themeBtn) {
-    if (localStorage.getItem('theme') === 'light') {
-      document.body.classList.add('theme-light');
+  // 1. INJECT GLOBAL CSS (The "Nuke" Option)
+  const style = document.createElement('style');
+  style.innerHTML = `
+    /* Force the mobile nav to be a solid, high-priority layer */
+    .mobile-menu-active {
+      display: flex !important;
+      flex-direction: column !important;
+      position: fixed !important;
+      top: 96px !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100vh !important;
+      background-color: #0f172a !important; /* Solid Slate 900 */
+      z-index: 999999 !important;
+      padding: 2rem !important;
+      overflow-y: auto !important;
     }
-    themeBtn.addEventListener('click', () => {
-      document.body.classList.toggle('theme-light');
-      const isLight = document.body.classList.contains('theme-light');
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    });
-  }
+    /* Stop the background from scrolling when menu is open */
+    .no-scroll { overflow: hidden !important; }
+    
+    /* Ensure dropdowns inside the menu don't flicker */
+    header nav div, header nav ul {
+      background-color: #0f172a !important;
+    }
+  `;
+  document.head.appendChild(style);
 
-  // --- 2. MOBILE MENU TOGGLE (Bulletproof Inline Styles) ---
+  // 2. MOBILE MENU TOGGLE
   const mobileBtn = document.querySelector('header button.lg\\:hidden');
   const navMenu = document.querySelector('header nav');
 
   if (mobileBtn && navMenu) {
-    mobileBtn.addEventListener('click', () => {
-      const isHidden = navMenu.classList.contains('hidden');
-      
-  if (isHidden) {
-        // 1. Show the menu
-        navMenu.classList.remove('hidden');
-        
-        // 2. Force the background and layering (The Nuke Option)
-        navMenu.style.setProperty('display', 'flex', 'important');
-        navMenu.style.setProperty('flex-direction', 'column', 'important');
-        navMenu.style.setProperty('position', 'fixed', 'important');
-        navMenu.style.setProperty('top', '96px', 'important');
-        navMenu.style.setProperty('left', '0', 'important');
-        navMenu.style.setProperty('width', '100%', 'important');
-        navMenu.style.setProperty('height', '100vh', 'important'); // Covers the whole screen
-        navMenu.style.setProperty('background-color', '#0f172a', 'important'); // Solid Slate
-        navMenu.style.setProperty('z-index', '999999', 'important'); // Highest possible priority
-        navMenu.style.setProperty('padding', '2rem', 'important');
-        
-        // 3. Prevent clicking through to the page content
-        document.body.style.overflow = 'hidden'; 
-        
-      } else {
-        // Close Menu
-        navMenu.classList.add('hidden');
-        navMenu.style.cssText = ''; 
-        document.body.style.overflow = ''; // Let the user scroll again
-      }
-
+    mobileBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isActive = navMenu.classList.toggle('mobile-menu-active');
+      navMenu.classList.toggle('hidden', !isActive);
+      document.body.classList.toggle('no-scroll', isActive);
     });
   }
 
-  // --- 3. SMART SCROLLING HEADER ---
+  // 3. SMART SCROLLING HEADER
   const header = document.querySelector('header');
   let lastScrollY = window.scrollY;
 
   if (header) {
-    // Ensure smooth sliding animation
-    header.style.transition = 'transform 0.4s ease-in-out, background-color 0.4s ease-in-out';
-    
+    header.style.transition = 'transform 0.4s ease, background-color 0.4s ease';
     window.addEventListener('scroll', () => {
-      const currentScrollY = window.scrollY;
-
-      // Solid background when scrolled down
-      if (currentScrollY > 20) {
-        header.style.backgroundColor = 'rgb(15, 23, 42)';
+      const current = window.scrollY;
+      
+      // Background logic
+      if (current > 50) {
+        header.style.backgroundColor = '#0f172a';
         header.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
       } else {
         header.style.backgroundColor = 'transparent';
         header.style.borderBottom = 'none';
       }
 
-      // Hide on scroll down, show on scroll up
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down -> slide up out of view
+      // Hide/Show logic
+      if (current > lastScrollY && current > 150) {
         header.style.transform = 'translateY(-100%)';
-        
-        // Auto-close menu if open
-        if (navMenu && !navMenu.classList.contains('hidden') && window.innerWidth < 1024) {
-          mobileBtn.click();
-        }
       } else {
-        // Scrolling up -> slide down into view
         header.style.transform = 'translateY(0)';
       }
-      
-      lastScrollY = currentScrollY;
+      lastScrollY = current;
     }, { passive: true });
   }
 });
