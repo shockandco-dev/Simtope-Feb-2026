@@ -1,20 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. INJECT GLOBAL CSS (The Master Stylesheet)
+  // 1. INJECT GLOBAL CSS
   const style = document.createElement('style');
   style.innerHTML = `
     /* --- DESKTOP DROPDOWN FIXES --- */
-    /* 1. Force Dropdowns to the absolute front layer and give them a solid background */
-    header .group > div, 
-    header nav .absolute {
-      z-index: 999999 !important; /* Forces it ON TOP of the primary menu and page */
-      background-color: #0f172a !important; /* Solid Slate 900 */
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.8) !important;
-    }
-    
-    /* 2. Bridge the "Hover Gap" so the menu doesn't disappear when the mouse moves down */
-    header .group {
-      padding-bottom: 24px !important; 
-      margin-bottom: -24px !important;
+    @media (min-width: 1024px) {
+      /* Bridge the hover gap securely */
+      header .group {
+        padding-bottom: 12px !important; 
+        margin-bottom: -12px !important;
+      }
+      /* Solid background for desktop dropdowns */
+      header nav .group .absolute > div {
+        z-index: 999999 !important;
+        background-color: #0f172a !important;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.8) !important;
+      }
     }
 
     /* --- MOBILE MENU FIXES --- */
@@ -31,6 +31,22 @@ document.addEventListener('DOMContentLoaded', () => {
       padding: 2rem !important;
       overflow-y: auto !important;
     }
+    
+    /* Make mobile dropdowns push content down instead of floating over it */
+    .mobile-menu-active .group .absolute {
+      position: relative !important;
+      top: 0 !important;
+      padding-top: 0.5rem !important;
+    }
+    
+    /* Remove the box styling so it blends into the mobile menu naturally */
+    .mobile-menu-active .group .absolute > div {
+      background-color: transparent !important;
+      box-shadow: none !important;
+      border: none !important;
+      padding: 0 0 0 1rem !important;
+    }
+
     .no-scroll { overflow: hidden !important; }
   `;
   document.head.appendChild(style);
@@ -53,14 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastScrollY = window.scrollY;
 
   if (header) {
-    // Ensure the header itself has a high layer priority, but lower than the dropdowns
     header.style.zIndex = '999998'; 
     header.style.transition = 'transform 0.4s ease, background-color 0.4s ease';
     
     window.addEventListener('scroll', () => {
       const current = window.scrollY;
-      
-      // Solid background when scrolled down
       if (current > 50) {
         header.style.backgroundColor = '#0f172a';
         header.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
@@ -69,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
         header.style.borderBottom = 'none';
       }
 
-      // Hide on scroll down, show on scroll up
       if (current > lastScrollY && current > 150) {
         header.style.transform = 'translateY(-100%)';
       } else {
