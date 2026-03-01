@@ -130,4 +130,58 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('theme', isLight ? 'light' : 'dark');
     });
   }
+
+  // --- 5. SECURE CONTACT FORM INTEGRATION ---
+  const contactForm = document.querySelector('form'); 
+  
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault(); 
+      
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.innerText;
+      submitBtn.innerText = 'Connecting...';
+      submitBtn.disabled = true;
+
+      const formData = new FormData(contactForm);
+      
+      // The Google Apps Script Web App URL
+      const GOOGLE_PROXY_URL = 'https://script.google.com/macros/s/AKfycbwWP07l6Zmxu8pNU-UCJ75wJJSUk2zZJbkd4M0jM6BngqIxvOtCGTH3--MwsnEajt1Y/exec';
+
+      try {
+        // Send data to the middleman as plain text to avoid CORS preflight errors
+        const response = await fetch(GOOGLE_PROXY_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8',
+          },
+          body: JSON.stringify({
+            email: formData.get('email'),
+            first_name: formData.get('first_name'),
+            last_name: formData.get('last_name')
+          }),
+          redirect: 'follow'
+        });
+
+        if (response.ok) {
+          submitBtn.innerText = 'Message Sent!';
+          submitBtn.style.backgroundColor = '#10b981'; // Emerald green
+          contactForm.reset();
+          
+          setTimeout(() => {
+             submitBtn.innerText = originalBtnText;
+             submitBtn.style.backgroundColor = '';
+             submitBtn.disabled = false;
+          }, 3000);
+        } else {
+          submitBtn.innerText = 'Error - Try Again';
+          submitBtn.disabled = false;
+        }
+      } catch (error) {
+        console.error('Fetch Error:', error);
+        submitBtn.innerText = 'Error - Try Again';
+        submitBtn.disabled = false;
+      }
+    });
+  }
 });
