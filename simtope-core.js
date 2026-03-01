@@ -131,41 +131,52 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 5. SECURE CONTACT FORM INTEGRATION ---
+ // --- 5. SECURE CONTACT FORM INTEGRATION (WITH DEBUGGING) ---
   const contactForm = document.querySelector('form'); 
   
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault(); 
       
+      console.log("1. Form submit intercepted.");
+
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalBtnText = submitBtn.innerText;
       submitBtn.innerText = 'Connecting...';
       submitBtn.disabled = true;
 
       const formData = new FormData(contactForm);
+      const formPayload = {
+        email: formData.get('email'),
+        first_name: formData.get('first_name'),
+        last_name: formData.get('last_name')
+      };
+      
+      console.log("2. Payload grabbed from form:", formPayload);
       
       // The Google Apps Script Web App URL
       const GOOGLE_PROXY_URL = 'https://script.google.com/macros/s/AKfycbwWP07l6Zmxu8pNU-UCJ75wJJSUk2zZJbkd4M0jM6BngqIxvOtCGTH3--MwsnEajt1Y/exec';
 
       try {
-        // Send data to the middleman as plain text to avoid CORS preflight errors
+        console.log("3. Sending fetch request to Google Apps Script...");
         const response = await fetch(GOOGLE_PROXY_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'text/plain;charset=utf-8',
           },
-          body: JSON.stringify({
-            email: formData.get('email'),
-            first_name: formData.get('first_name'),
-            last_name: formData.get('last_name')
-          }),
+          body: JSON.stringify(formPayload),
           redirect: 'follow'
         });
 
-        if (response.ok) {
+        console.log("4. Received response from Google Apps Script.");
+        
+        // Parse the JSON coming back from Google
+        const responseData = await response.json();
+        console.log("5. Middleman Report:", responseData);
+
+        if (responseData.status === 'success') {
           submitBtn.innerText = 'Message Sent!';
-          submitBtn.style.backgroundColor = '#10b981'; // Emerald green
+          submitBtn.style.backgroundColor = '#10b981'; 
           contactForm.reset();
           
           setTimeout(() => {
@@ -174,12 +185,13 @@ document.addEventListener('DOMContentLoaded', () => {
              submitBtn.disabled = false;
           }, 3000);
         } else {
-          submitBtn.innerText = 'Error - Try Again';
+          console.error('Instantly API Rejected the Payload:', responseData);
+          submitBtn.innerText = 'Error - Check Console';
           submitBtn.disabled = false;
         }
       } catch (error) {
-        console.error('Fetch Error:', error);
-        submitBtn.innerText = 'Error - Try Again';
+        console.error('6. Fetch Error (Network/CORS):', error);
+        submitBtn.innerText = 'Error - Check Console';
         submitBtn.disabled = false;
       }
     });
