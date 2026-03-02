@@ -131,14 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
- // --- 5. SECURE CONTACT FORM INTEGRATION (WITH DEBUGGING) ---
+  // --- 5. SECURE CONTACT FORM INTEGRATION (PRODUCTION) ---
   const contactForm = document.querySelector('form'); 
   
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault(); 
-      
-      console.log("1. Form submit intercepted.");
 
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalBtnText = submitBtn.innerText;
@@ -152,13 +150,10 @@ document.addEventListener('DOMContentLoaded', () => {
         last_name: formData.get('last_name')
       };
       
-      console.log("2. Payload grabbed from form:", formPayload);
-      
       // The Google Apps Script Web App URL
       const GOOGLE_PROXY_URL = 'https://script.google.com/macros/s/AKfycbwWP07l6Zmxu8pNU-UCJ75wJJSUk2zZJbkd4M0jM6BngqIxvOtCGTH3--MwsnEajt1Y/exec';
 
       try {
-        console.log("3. Sending fetch request to Google Apps Script...");
         const response = await fetch(GOOGLE_PROXY_URL, {
           method: 'POST',
           headers: {
@@ -167,12 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
           body: JSON.stringify(formPayload),
           redirect: 'follow'
         });
-
-        console.log("4. Received response from Google Apps Script.");
         
         // Parse the JSON coming back from Google
         const responseData = await response.json();
-        console.log("5. Middleman Report:", responseData);
 
         if (responseData.status === 'success') {
           submitBtn.innerText = 'Message Sent!';
@@ -185,13 +177,15 @@ document.addEventListener('DOMContentLoaded', () => {
              submitBtn.disabled = false;
           }, 3000);
         } else {
+          // Failsafe logging just in case of future API changes
           console.error('Instantly API Rejected the Payload:', responseData);
-          submitBtn.innerText = 'Error - Check Console';
+          submitBtn.innerText = 'Error - Try Again';
           submitBtn.disabled = false;
         }
       } catch (error) {
-        console.error('6. Fetch Error (Network/CORS):', error);
-        submitBtn.innerText = 'Error - Check Console';
+        // Failsafe logging
+        console.error('Fetch Error (Network/CORS):', error);
+        submitBtn.innerText = 'Error - Try Again';
         submitBtn.disabled = false;
       }
     });
